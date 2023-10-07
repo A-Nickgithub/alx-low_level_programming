@@ -10,15 +10,12 @@
 
 int main(void)
 {
-	char chara = 'a';
-	char chara2 = 'A';
+	char chara;
 
-	while (chara <= 'z')
+	for (chara = 'a'; chara <= 'z'; chara++)
 		putchar(chara);
-	chara++;
-	while (chara2 <= 'Z')
-		putchar(chara2);
-	chara2++;
+	for (chara = 'A'; chara <= 'Z'; chara++)
+		putchar(chara);
 	putchar('\n');
 	return (0);
 }
