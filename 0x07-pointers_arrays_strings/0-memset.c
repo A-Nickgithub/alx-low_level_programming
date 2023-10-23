@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- *_memset:function fills the memory
+ **_memset - function fills the memory
  *
  *@b: the constant value to be passed
  *@s: the address of the memory area
