@@ -2,7 +2,8 @@
 #include <stdio.h>
 
 /**
- *_memset: main function of the prototype
+ *_memset:function fills the memory
+ *
  *@b: the constant value to be passed
  *@s: the address of the memory area
  *@n: the number of bytes of the memory
