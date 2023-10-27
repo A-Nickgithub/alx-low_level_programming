@@ -2,29 +2,56 @@
 #include <stdlib.h>
 #include <time.h>
 
-/**
- *main - program that generates random valid
- *passwords for the program 101-crackme
- *
- *Return: Always 0 (Success)
- */
-int main(void)
-{
-	int pass[100];
-	int i, sum, n;
+#define PASSWORD_LENGTH 10
 
-	sum = 0;
+/**
+ *generate_random_char - Generates a random character from the given character set
+ *@charset: Character set to choose from
+ *@charset_length: Length of the character set
+ *
+ *Returns: A random character from the character set
+ */
+char generate_random_char(const char *charset, int charset_length)
+{
+	return charset[rand() % charset_length];
+}
+int main()
+{
+	const char uppercase_chars[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	const char lowercase_chars[] = "abcdefghijklmnopqrstuvwxyz";
+	const char digits[] = "0123456789";
+	const char special_chars[] = "!@#$%^&*()_+{}[]|;:'<>,./?";
+			    
+	int uppercase_length = sizeof(uppercase_chars) - 1;
+	int lowercase_length = sizeof(lowercase_chars) - 1;
+	int digits_length = sizeof(digits) - 1;
+	int special_length = sizeof(special_chars) - 1;
+
+	char password[PASSWORD_LENGTH + 1];
+	int i;
+
 	srand(time(NULL));
-	for (i = 0; i < 100; i++)
+	for (i = 0; i < PASSWORD_LENGTH; i++)
 	{
-		pass[i] = rand() % 78;
-		sum += (pass[i] + '0');
-		putchar(pass[i] + '0');
-		if ((2772 - sum) - '0' < 78)
-			n = 2772 - sum - '0';
-		sum += n;
-		putchar(n + '0');
-		break;
+	int choice = rand() % 4
+		switch (choice)
+		{
+			case 0:
+				password[i] = generate_random_char(uppercase_chars, uppercase_length);
+				break;
+			case 1:
+				password[i] = generate_random_char(lowercase_chars, lowercase_length);
+				break;
+			case 2:
+				password[i] = generate_random_char(digits, digits_length);
+				break;
+			case 3:
+				password[i] = generate_random_char(special_chars, special_length);
+				break;
+		}
 	}
+	password[PASSWORD_LENGTH] = '\0';
+	printf("Generated password: %s\n", password);
+	printf("Tada! congrats\n");
 	return (0);
 }
