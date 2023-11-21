@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
- * listint_len: claculate the number of elments/nodes
+ * listint_len- claculate the number of elments/nodes
  * @h: pointer to the first node
  *
  * Return: The number of nodes/elemnets
