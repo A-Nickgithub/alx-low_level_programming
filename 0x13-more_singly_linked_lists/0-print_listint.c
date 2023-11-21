@@ -6,7 +6,7 @@
  * Description: will return the number of nodes and
  * print the contents of the nodes
  *
- * Return the number of nodes
+ * Return: the number of nodes
  */
 
 size_t print_listint(const listint_t *h)
