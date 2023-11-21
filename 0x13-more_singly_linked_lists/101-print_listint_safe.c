@@ -1,51 +1,43 @@
-#include "lists.h"
-#include <stdio.h>
 
-size_t looped_listint_len(const listint_t *head);
-size_t print_listint_safe(const listint_t *head);
+ #include "lists.h"
+ #include <stdio.h>
+ #include <stdlib.h>
 
-/**
- * print_listint_safe - Prints the elements
- * of a linked list (safe version)
- * looped_listint_len - Counts the number of unique nodes
- * in a looped listint_t linked list.
- * @head: A pointer to the head of the listint_t to check.
- *
- * Return: If the list is not looped - 0.
- * Otherwise - the number of unique nodes in the list.
- */
-
+ /**
+  * print_listint_safe -Prints the elements of a linked list (safe version)
+  * @head: Pointer to the head of the linked list
+  * Return: Number of nodes in the list
+  *
+  * This function prints the address and value of each node in the linked list.
+  * It includes a safety mechanism to detect potential infinite loops and stops
+  * printing if the loop is detected.
+  */
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *t, *h;
-	size_t nodes = 1;
+	const listint_t  *slow, *fast;
+	size_t count = 0;
 
-	if (head == NULL || head->next == NULL)
-		return (0);
+	slow = head;
+	fast = head;
 
-	t = head->next;
-	h = (head->next)->next;
-	while (h)
+	if (head == NULL)
 	{
-		if (t == h)
-		{
-			t = h;
-			while (t != h)
-			{
-				nodes++;
-				t = t->next;
-				h = h->next;
-			}
-			t = t->next;
-			while (t != h)
-			{
-				nodes++;
-				t = t->next;
-			}
-			return (nodes);
-		}
-		t = t->next;
-		h = (h->next)->next;
+		fprintf(stderr, "Error: head is NULL\n");
+		exit(98);
 	}
-	return (0);
+
+	while (slow != NULL && fast != NULL && fast->next != NULL)
+	{
+		printf("[%p] %d\n", (void *)slow, slow->n);
+		count++;
+		slow = slow->next;
+		fast = fast->next;
+
+		if (slow == fast)
+		{
+			printf("Infinite loop detected, stopping the printing.\n");
+			exit(98);
+		}
+	}
+	return (count);
 }
