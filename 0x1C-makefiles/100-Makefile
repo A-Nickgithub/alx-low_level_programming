@@ -1,18 +1,13 @@
-CC = gcc
-SRC = $(wildcard *.c)
+C = gcc
+SRC = main.c school.c
 OBJ = $(SRC:.c=.o)
 NAME = school
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
 .PHONY: all clean oclean fclean re
 
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	$(CC) -o $@ $^
-
-$(OBJ): $(SRC)
-	$(CC) -c $(CFLAGS) $^
+all: m.h $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 
 clean:
 	$(RM) *~ $(NAME)
@@ -21,10 +16,5 @@ oclean:
 	$(RM) $(OBJ)
 
 fclean: clean oclean
-	$(RM) $(NAME)
 
 re: fclean all
-
-ifneq ($(wildcard m.h),m.h)
-	$(error m.h not found)
-endif
